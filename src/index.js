@@ -9,27 +9,39 @@ import "./index.css";
 class App extends Component {
 
     state = {
-        List: []
+        List: [],
+        city: "Rivne"
     }
     componentDidMount() {
-
-
-        fetch('https://api.privatbank.ua/p24api/infrastructure?json&tso&address=&city=Rivne')
+        console.log("cdm", this.state.city)
+        const {city}=this.state;
+        fetch(
+            `https://api.privatbank.ua/p24api/infrastructure?json&tso&address=&city=${city}`
+            )
             .then(response => response.json())
             .then(({ devices }) => {
-                this.setState({ List: devices });
-            }
-            )
+                this.setState({ 
+                    List: devices 
+                });
+            });
+    };
+componentDidUpdate(){
+     onSearchCity=(i)=>{
+         
+        fetch(
+            `https://api.privatbank.ua/p24api/infrastructure?json&tso&address=&city=${i}`
+        )
+        .then(response=>response.json())
+        .then(({devices})=>{
+            console.log(devices)
+        })
     }
-
-    /* rewriteList=(ID)=>{
-        const index = this.state.List.findIndex(elem => elem.ID === ID);
-        let ListNew = [];
-    } */
+} 
+    
     render() {
         return (
             <div className="container text-center" >
-                <Search></Search>
+                <Search onSearchCity={this.onSearchCity}></Search>
                 <TerminalList
                     TermListArr={this.state.List}                
                 ></TerminalList>

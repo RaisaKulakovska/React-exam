@@ -5,7 +5,7 @@ class Map extends React.Component {
 
     render() {
         return (
-            <div className="mapIt mx-auto my-2">
+            <div className="mx-auto my-2">
 
             </div>
         )

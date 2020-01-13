@@ -2,20 +2,19 @@ import React, { Fragment } from 'react';
 import TerminalItem from "./TerminalItem/terminalItem";
 import "./TerminalItem/terminalItem.css";
 import uuid from "uuid";
-import Search from "../Search/search"
 
-const TerminalList = ({ TermListArr, getCity }) => {
+const TerminalList = ({ TermListArr}) => {
 
-    console.log("Terminal List => ", TermListArr);
-    const termIt = TermListArr.map((it) => {
+    //console.log("Terminal List => ", TermListArr);
+    const termIt = TermListArr.map((item) => {
         let ID = uuid.v4();
         return <TerminalItem
             key={ID}
-            latitude={it.latitude}
-            longitude={it.longitude}
-            fullAddressUa={it.fullAddressUa}
-            placeUa={it.placeUa}
-            cityUA={it.cityUA}        
+            latitude={item.latitude}
+            longitude={item.longitude}
+            fullAddressUa={item.fullAddressUa}
+            placeUa={item.placeUa}
+            cityUA={item.cityUA}        
         ></TerminalItem>
     })
 
